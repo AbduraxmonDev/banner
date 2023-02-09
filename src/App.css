@@ -1,38 +1,213 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a{
+  text-decoration: none;
+  color: inherit;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button{
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body{
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+.wrapper{
+  overflow: hidden;
+}
+
+.container{
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header__container{
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+}
+
+.navbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(10px + 20 * (100vw / 1300));
+  
+}
+
+.navbar__link{
+  color: gray;
+  position: relative;
+  transition: all 0.4s;
+}
+
+.navbar__link:hover{
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar__link::after{
+  content: '';
+  position: absolute;
+  display: block;
+  width:0%;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s;
+  right: 0%;
+  margin-top: 8px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.navbar__link:hover::after{
+  width: 100%;
+  transition: width 0.3s;
+  left: 0%;
+}
+
+.header__center{
+  transition: transform .5s;
+}
+
+.header.open .header__center{
+  position: absolute;
+  backdrop-filter: blur(10px);
+  width: 100%;
+  height: 100vh;
+  transform: translateX(-100%);
+  top: 0;
+}
+
+.header.open .navbar{
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 130px 0 20px 60px; 
+}
+
+.header__right{
+  display: none;
+}
+
+.hamburger{
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border-color: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+.hamburger__item{
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  border-radius: 10px;
+  background-color: white;
+  left: 4px;
+  transition: transform .5s, opacity .5s, background-color .5s;
+}
+
+.hamburger__item:nth-child(1) {
+  transform: translateY(-10px);
+}
+
+.hamburger__item:nth-child(3) {
+  transform: translateY(10px);
+}
+
+.header.open .hamburger__item:nth-child(1) {
+  transform: translateY(0) rotate(45deg);
+}
+.header.open .hamburger__item:nth-child(2) {
+  opacity: 0;
+}
+.header.open .hamburger__item:nth-child(3) {
+  transform: translateY(0) rotate(-45deg);
+}
+
+
+@media screen and (max-width: 845px) {
+  .header{
+    overflow: hidden;
   }
-  to {
-    transform: rotate(360deg);
+  .header__center{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    left: 100%;
+    top: 0;
   }
+
+  .navbar{
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 100px 0 20px 100px; 
+    gap: 30px;
+    color: white;
+  }
+
+  .navbar__link{
+    color: white;
+  }
+
+  .header__right{
+    display: block;
+  }
+}
+
+.banner{
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 9.04%, rgba(0, 0, 0, 0) 43.36%), url(./bannerImg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.banner__container{
+  margin-top: 220px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+  max-width: 700px;
+  width: 100%;
+  gap: 32px;
+}
+
+.banner__title{
+  color: white;
+  font-size: calc(20px + 10 * (100vw / 1300));
+}
+
+.banner__text{
+  color: white;
+  font-size: calc(10px + 5 * (100vw / 1300));
+}
+
+.banner__button{
+  padding: 12px 54px;
+  font-size: calc(10px + 5 * (100vw / 1300));
+  color: white;
+  background-color: #DF4F3A;
+  border:2px solid transparent;
+  transition: all 0.4s;
+}
+
+.banner__button:hover{
+  background-color: transparent;
+  border-color: #DF4F3A;
+  color: #ff2200;
 }
